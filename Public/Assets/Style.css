@@ -152,18 +152,27 @@ body
     text-transform: uppercase;
     font-weight: 549;
 }
+ 
 .habilidades .box
 {
     text-transform: uppercase;
+    flex-direction: column;
     display: flex;
     position:relative;
-    margin: 10px;
+    margin: 5px;
+}
+.habilidades .box h4{
+    font-size:x-large;
 }
 .habilidades .box h4 i
 {
     min-width: 20px;
     font-size: xx-large;
-    margin-bottom: 15px;
+    margin-bottom: 7px;
+    height: 5px;
+}
+.sub-option{
+    margin-left: 25px;
 }
 .hobbies ul
 {
