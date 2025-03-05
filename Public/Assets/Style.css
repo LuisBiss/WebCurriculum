@@ -41,10 +41,10 @@ body
     border-top: 5px solid rgb(0, 0, 0, 0.3);
     border-bottom: 5px solid rgb(0, 0, 0, 0.3);
 }
-.perfil h2
+.perfil h1
 {
     color:#E77C5B;
-    font-size: x-large;
+    font-size: xx-large;
     text-transform: uppercase;
     text-align: center;
     margin-top: 20px;
@@ -213,14 +213,4 @@ a.link
         min-width: 150px;
         margin-bottom: 5px;;
     }
-}
-img
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit:cover;
-    object-position: 0px -40px;
 }
