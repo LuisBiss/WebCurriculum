@@ -1,98 +1,42 @@
 /* =========================================================
    Currículo — Luis Francisco Bissoli do Amparo
    i18n (pt / en / zh) + tema claro-escuro + exportação em PDF
+
+   ARQUITETURA DO i18n
+   O português é o idioma base e vive **apenas no HTML**, já
+   renderizado. Este script o colhe do DOM no boot, então não
+   existe cópia duplicada do texto em português aqui — uma só
+   fonte de verdade por idioma. Consequência importante: sem
+   JavaScript a página continua completa em português.
+
+   ATENÇÃO: os textos marcados "TODO" abaixo (e seus equivalentes
+   no HTML) aguardam o cargo e as atribuições na Fass Advogados e
+   o ano da certificação de drones.
    ========================================================= */
 (function () {
     "use strict";
 
-    /* ---------------------------------------------------------
-       ATENÇÃO: as chaves marcadas com "TODO" abaixo precisam
-       dos dados reais do cargo na Fass Advogados e do ano da
-       certificação de drones.
-       --------------------------------------------------------- */
+    var BASE_LANG = "pt";
 
-    var I18N = {
+    var META = {
         pt: {
             htmlLang: "pt-BR",
-            docTitle: "Luis Francisco Bissoli do Amparo — Currículo",
-            fileName: "Curriculo-Luis-Francisco-Bissoli-do-Amparo",
-
-            "ui.pdf": "Baixar PDF",
-            "ui.theme": "Alternar entre tema claro e escuro",
-
-            "header.role": "Engenharia da Computação · Infraestrutura de Redes e Segurança da Informação",
-            "header.location": "Vitória, Espírito Santo — Brasil",
-
-            "about.title": "Perfil",
-            "about.p1": "Estudante de Engenharia da Computação com quatro anos de atuação em tecnologia, da manutenção de eletrônicos à implementação e ao monitoramento de infraestrutura de redes. Direciono minha carreira para a Segurança da Informação, unindo uma base sólida em redes e sistemas Linux ao estudo contínuo de defesa e de testes de intrusão.",
-            "about.p2": "Tenho experiência prática em configuração de equipamentos Mikrotik, administração de servidores, suporte a ambientes Microsoft 365 e automação em Bash. Programo em Python, C e C++, o que me permite entender a segurança desde o firmware até a aplicação.",
-
-            "exp.title": "Experiência Profissional",
-
-            "exp.fassRole": "[TODO — cargo na Fass Advogados]",
-            "exp.fassPeriod": "jun/2025 — atual",
-            "exp.fassB1": "[TODO — principal responsabilidade]",
-            "exp.fassB2": "[TODO — segunda responsabilidade]",
-            "exp.fassB3": "[TODO — resultado ou entrega de destaque]",
-
-            "exp.tceesRole": "Estágio em Tecnologia da Informação",
-            "exp.tceesPeriod": "2024 — fev/2025",
-            "exp.tceesB1": "Suporte técnico aos sistemas internos da instituição e ao ambiente Microsoft 365.",
-            "exp.tceesB2": "Manutenção preventiva e corretiva dos equipamentos de tecnologia do tribunal.",
-
-            "exp.sinales2Role": "Auxiliar Eletrotécnico",
-            "exp.sinales2Period": "2023 — 2024",
-            "exp.sinales2B1": "Implementação e configuração de redes com equipamentos Mikrotik em ambientes de clientes.",
-            "exp.sinales2B2": "Desenvolvimento e implantação de sistemas de monitoramento de servidores, com comunicação direta com clientes e fornecedores.",
-
-            "exp.sinales1Role": "Estágio em Eletrônica",
-            "exp.sinales1Period": "2022 — 2023",
-            "exp.sinales1B1": "Produção e manutenção de dispositivos eletrônicos em placas de circuito impresso (PCI).",
-
-            "proj.title": "Projetos",
-            "proj.ctmc": "Simulador didático de reação em cadeia de nêutrons por CTMC/Gillespie: motor de cálculo em C exposto por uma API FastAPI, com site de apresentação em Flask.",
-            "proj.shell": "Coleção de scripts de automação em Shell para tarefas de administração e rotina em Linux.",
-            "proj.uart": "Comunicação serial UART entre duas placas Arduino, desenvolvida na disciplina de Microprocessadores e Microcontroladores.",
-            "proj.recomendai": "Rede neural Multilayer Perceptron que gera recomendações nutricionais a partir de dados de exame de sangue.",
-
-            "skills.title": "Competências",
-            "skills.net": "Redes e Infraestrutura",
-            "skills.sec": "Segurança da Informação",
-            "skills.sys": "Sistemas",
-            "skills.dev": "Desenvolvimento",
-            "skills.data": "Dados",
-            "skills.tagRouting": "Roteamento e VLANs",
-            "skills.tagMonitor": "Monitoramento de servidores",
-            "skills.tagHardening": "Hardening de sistemas",
-            "skills.tagNetsec": "Segurança de redes",
-            "skills.tagPentest": "Pentest em laboratório",
-
-            "edu.title": "Formação",
-            "edu.bsc": "Bacharelado em Engenharia da Computação",
-            "edu.bscWhen": "2021 — dez/2026 (previsão)",
-            "edu.drone": "Levantamento Topográfico com Drones",
-            "edu.droneOrg": "Certificação",
-            "edu.droneWhen": "[TODO — instituição e ano]",
-            "edu.mysql": "Banco de Dados MySQL",
-            "edu.hs": "Ensino Médio Completo",
-
-            "lang.title": "Idiomas",
-            "lang.pt": "Português",
-            "lang.ptLevel": "Nativo",
-            "lang.en": "Inglês",
-            "lang.enLevel": "B2 — Fisk",
-
-            "practice.title": "Prática Contínua",
-
-            "foot.updated": "Atualizado em",
-            "foot.date": "julho de 2026"
+            fileName: "Curriculo-Luis-Francisco-Bissoli-do-Amparo"
         },
-
         en: {
             htmlLang: "en",
             docTitle: "Luis Francisco Bissoli do Amparo — Resume",
-            fileName: "Resume-Luis-Francisco-Bissoli-do-Amparo",
+            fileName: "Resume-Luis-Francisco-Bissoli-do-Amparo"
+        },
+        zh: {
+            htmlLang: "zh-Hans",
+            docTitle: "Luis Francisco Bissoli do Amparo — 简历",
+            fileName: "Jianli-Luis-Francisco-Bissoli-do-Amparo"
+        }
+    };
 
+    var TRANSLATIONS = {
+        en: {
             "ui.pdf": "Download PDF",
             "ui.theme": "Toggle light and dark theme",
 
@@ -165,10 +109,6 @@
         },
 
         zh: {
-            htmlLang: "zh-Hans",
-            docTitle: "Luis Francisco Bissoli do Amparo — 简历",
-            fileName: "Jianli-Luis-Francisco-Bissoli-do-Amparo",
-
             "ui.pdf": "下载 PDF",
             "ui.theme": "切换浅色与深色主题",
 
@@ -245,6 +185,27 @@
     var STORE_THEME = "cv-theme";
     var root = document.documentElement;
 
+    var textNodes = document.querySelectorAll("[data-i18n]");
+    var ariaNodes = document.querySelectorAll("[data-i18n-aria]");
+
+    /* ---------- Colheita do idioma base ----------
+       O português publicado no HTML vira o dicionário `pt`. Nada
+       de texto em português duplicado neste arquivo. */
+    (function harvestBaseLang() {
+        var base = {};
+
+        textNodes.forEach(function (el) {
+            base[el.getAttribute("data-i18n")] = el.textContent.replace(/\s+/g, " ").trim();
+        });
+
+        ariaNodes.forEach(function (el) {
+            base[el.getAttribute("data-i18n-aria")] = el.getAttribute("aria-label") || "";
+        });
+
+        TRANSLATIONS[BASE_LANG] = base;
+        META[BASE_LANG].docTitle = document.title;
+    })();
+
     /* localStorage pode lançar em modo restrito / iframe sandbox */
     function store(key, value) {
         try {
@@ -255,41 +216,42 @@
     }
 
     /* ---------------- Idioma ---------------- */
-    var currentLang = "pt";
+    var currentLang = BASE_LANG;
 
     function pickInitialLang() {
         var fromUrl = new URLSearchParams(location.search).get("lang");
-        if (fromUrl && I18N[fromUrl]) return fromUrl;
+        if (fromUrl && TRANSLATIONS[fromUrl]) return fromUrl;
 
         var saved = store(STORE_LANG);
-        if (saved && I18N[saved]) return saved;
+        if (saved && TRANSLATIONS[saved]) return saved;
 
-        var tags = navigator.languages || [navigator.language || "pt"];
+        var tags = navigator.languages || [navigator.language || BASE_LANG];
         for (var i = 0; i < tags.length; i++) {
             var tag = String(tags[i]).toLowerCase();
             if (tag.indexOf("zh") === 0) return "zh";
             if (tag.indexOf("pt") === 0) return "pt";
             if (tag.indexOf("en") === 0) return "en";
         }
-        return "pt";
+        return BASE_LANG;
     }
 
     function applyLang(lang) {
-        var dict = I18N[lang];
-        if (!dict) return;
+        var dict = TRANSLATIONS[lang];
+        var meta = META[lang];
+        if (!dict || !meta) return;
         currentLang = lang;
 
-        root.lang = dict.htmlLang;
-        document.title = dict.docTitle;
+        root.lang = meta.htmlLang;
+        document.title = meta.docTitle;
 
-        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        textNodes.forEach(function (el) {
             var value = dict[el.getAttribute("data-i18n")];
             if (typeof value === "string") el.textContent = value;
         });
 
-        document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+        ariaNodes.forEach(function (el) {
             var value = dict[el.getAttribute("data-i18n-aria")];
-            if (typeof value === "string") {
+            if (typeof value === "string" && value) {
                 el.setAttribute("aria-label", value);
                 el.title = value;
             }
@@ -345,7 +307,7 @@
     if (pdfButton) {
         pdfButton.addEventListener("click", function () {
             var previous = document.title;
-            document.title = I18N[currentLang].fileName;
+            document.title = META[currentLang].fileName;
 
             function restore() {
                 document.title = previous;

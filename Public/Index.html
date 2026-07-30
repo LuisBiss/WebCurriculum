@@ -30,6 +30,16 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
     <link rel="stylesheet" href="Assets/style.css">
+
+    <!-- Sem JS a barra de controles é inerte: os três botões não fariam nada.
+         O conteúdo em português já vem renderizado no HTML, e Ctrl+P continua
+         gerando o PDF, porque o CSS de impressão não depende de script. -->
+    <noscript>
+        <style>
+            .toolbar { display: none; }
+            .noscript-note { display: block; }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -40,7 +50,8 @@
             <button type="button" class="chip" data-lang-set="en" lang="en">EN</button>
             <button type="button" class="chip" data-lang-set="zh" lang="zh-Hans">中文</button>
         </div>
-        <button type="button" class="chip chip--icon" id="theme-toggle" data-i18n-aria="ui.theme">
+        <button type="button" class="chip chip--icon" id="theme-toggle" data-i18n-aria="ui.theme"
+            aria-label="Alternar entre tema claro e escuro" title="Alternar entre tema claro e escuro">
             <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="4.2" />
                 <path
@@ -116,8 +127,13 @@
             <div class="col col--main">
                 <section class="block">
                     <h2 data-i18n="about.title">Perfil</h2>
-                    <p data-i18n="about.p1"></p>
-                    <p data-i18n="about.p2"></p>
+                    <p data-i18n="about.p1">Estudante de Engenharia da Computação com quatro anos de atuação em
+                        tecnologia, da manutenção de eletrônicos à implementação e ao monitoramento de infraestrutura de
+                        redes. Direciono minha carreira para a Segurança da Informação, unindo uma base sólida em redes e
+                        sistemas Linux ao estudo contínuo de defesa e de testes de intrusão.</p>
+                    <p data-i18n="about.p2">Tenho experiência prática em configuração de equipamentos Mikrotik,
+                        administração de servidores, suporte a ambientes Microsoft 365 e automação em Bash. Programo em
+                        Python, C e C++, o que me permite entender a segurança desde o firmware até a aplicação.</p>
                 </section>
 
                 <section class="block">
@@ -125,16 +141,16 @@
 
                     <article class="job">
                         <div class="job__head">
-                            <h3 data-i18n="exp.fassRole">Tecnologia da Informação</h3>
+                            <h3 data-i18n="exp.fassRole">[TODO — cargo na Fass Advogados]</h3>
                             <p class="job__org">Fass Advogados</p>
                             <p class="job__when">
                                 <time datetime="2025-06"><span data-i18n="exp.fassPeriod">jun/2025 — atual</span></time>
                             </p>
                         </div>
                         <ul class="job__bullets">
-                            <li data-i18n="exp.fassB1"></li>
-                            <li data-i18n="exp.fassB2"></li>
-                            <li data-i18n="exp.fassB3"></li>
+                            <li data-i18n="exp.fassB1">[TODO — principal responsabilidade]</li>
+                            <li data-i18n="exp.fassB2">[TODO — segunda responsabilidade]</li>
+                            <li data-i18n="exp.fassB3">[TODO — resultado ou entrega de destaque]</li>
                         </ul>
                     </article>
 
@@ -147,8 +163,10 @@
                             </p>
                         </div>
                         <ul class="job__bullets">
-                            <li data-i18n="exp.tceesB1"></li>
-                            <li data-i18n="exp.tceesB2"></li>
+                            <li data-i18n="exp.tceesB1">Suporte técnico aos sistemas internos da instituição e ao
+                                ambiente Microsoft 365.</li>
+                            <li data-i18n="exp.tceesB2">Manutenção preventiva e corretiva dos equipamentos de tecnologia
+                                do tribunal.</li>
                         </ul>
                     </article>
 
@@ -161,8 +179,10 @@
                             </p>
                         </div>
                         <ul class="job__bullets">
-                            <li data-i18n="exp.sinales2B1"></li>
-                            <li data-i18n="exp.sinales2B2"></li>
+                            <li data-i18n="exp.sinales2B1">Implementação e configuração de redes com equipamentos Mikrotik
+                                em ambientes de clientes.</li>
+                            <li data-i18n="exp.sinales2B2">Desenvolvimento e implantação de sistemas de monitoramento de
+                                servidores, com comunicação direta com clientes e fornecedores.</li>
                         </ul>
                     </article>
 
@@ -175,7 +195,8 @@
                             </p>
                         </div>
                         <ul class="job__bullets">
-                            <li data-i18n="exp.sinales1B1"></li>
+                            <li data-i18n="exp.sinales1B1">Produção e manutenção de dispositivos eletrônicos em placas de
+                                circuito impresso (PCI).</li>
                         </ul>
                     </article>
                 </section>
@@ -185,23 +206,28 @@
                     <div class="projects">
                         <a class="project" href="https://github.com/LuisBiss/atomic-ctmc-simulator" rel="noopener">
                             <h3>atomic-ctmc-simulator</h3>
-                            <p data-i18n="proj.ctmc"></p>
+                            <p data-i18n="proj.ctmc">Simulador didático de reação em cadeia de nêutrons por
+                                CTMC/Gillespie: motor de cálculo em C exposto por uma API FastAPI, com site de
+                                apresentação em Flask.</p>
                             <p class="project__stack"><span>C</span><span>Python</span><span>FastAPI</span><span>Flask</span>
                             </p>
                         </a>
                         <a class="project" href="https://github.com/LuisBiss/Script_Shell" rel="noopener">
                             <h3>Script_Shell</h3>
-                            <p data-i18n="proj.shell"></p>
+                            <p data-i18n="proj.shell">Coleção de scripts de automação em Shell para tarefas de
+                                administração e rotina em Linux.</p>
                             <p class="project__stack"><span>Bash</span><span>Linux</span></p>
                         </a>
                         <a class="project" href="https://github.com/LuisBiss/Fighting_Game" rel="noopener">
-                            <h3>Fighting_Game — UART</h3>
-                            <p data-i18n="proj.uart"></p>
+                            <h3>Fighting_Game (UART)</h3>
+                            <p data-i18n="proj.uart">Comunicação serial UART entre duas placas Arduino, desenvolvida na
+                                disciplina de Microprocessadores e Microcontroladores.</p>
                             <p class="project__stack"><span>C++</span><span>Arduino</span><span>UART</span></p>
                         </a>
                         <a class="project" href="https://github.com/LuisBiss/RecomendAI" rel="noopener">
                             <h3>RecomendAI</h3>
-                            <p data-i18n="proj.recomendai"></p>
+                            <p data-i18n="proj.recomendai">Rede neural Multilayer Perceptron que gera recomendações
+                                nutricionais a partir de dados de exame de sangue.</p>
                             <p class="project__stack"><span>Python</span><span>MLP</span></p>
                         </a>
                     </div>
@@ -275,7 +301,7 @@
                         <li>
                             <h3 data-i18n="edu.drone">Levantamento Topográfico com Drones</h3>
                             <p class="timeline__org" data-i18n="edu.droneOrg">Certificação</p>
-                            <p class="timeline__when" data-i18n="edu.droneWhen"></p>
+                            <p class="timeline__when" data-i18n="edu.droneWhen">[TODO — instituição e ano]</p>
                         </li>
                         <li>
                             <h3 data-i18n="edu.mysql">Banco de Dados MySQL</h3>
@@ -316,6 +342,8 @@
         </div>
 
         <footer class="foot">
+            <p class="noscript-note">Este currículo está disponível em inglês e 中文; a troca de idioma requer
+                JavaScript. Use Ctrl+P para gerar o PDF.</p>
             <p><span data-i18n="foot.updated">Atualizado em</span>
                 <time datetime="2026-07"><span data-i18n="foot.date">julho de 2026</span></time>
             </p>

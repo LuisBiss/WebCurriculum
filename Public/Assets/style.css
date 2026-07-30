@@ -22,7 +22,12 @@
 
     --radius: 10px;
     --sheet-w: 1080px;
-    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    /* Inter não cobre CJK. Os fallbacks nomeados garantem que a versão
+       中文 caia numa face desenhada para hanzi em cada plataforma, em
+       vez do que o sistema escolher por acidente. */
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+        "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
@@ -62,8 +67,32 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ---------- Ritmo tipográfico do chinês ----------
+   Hanzi precisa de mais entrelinha que o latim, e o tracking
+   expandido + caixa alta dos títulos é um recurso latino: em CJK
+   ele só afasta os ideogramas sem criar hierarquia. */
 :lang(zh-Hans) {
-    line-height: 1.75;
+    line-height: 1.8;
+}
+
+:lang(zh-Hans) .block > h2 {
+    text-transform: none;
+    letter-spacing: .06em;
+    font-size: .86rem;
+}
+
+:lang(zh-Hans) .tags li,
+:lang(zh-Hans) .habilidades {
+    text-transform: none;
+}
+
+/* JetBrains Mono também não tem CJK: nos campos que passam a conter
+   ideogramas (períodos, datas), voltamos para a face do corpo. */
+:lang(zh-Hans) .job__when,
+:lang(zh-Hans) .timeline__when,
+:lang(zh-Hans) .langs__level {
+    font-family: var(--font);
+    letter-spacing: 0;
 }
 
 h1,
@@ -86,6 +115,43 @@ ul {
 
 a {
     color: inherit;
+}
+
+/* ---------- Resiliência a texto extremo ----------
+   Cargos longos, e-mails longos e traduções que crescem 40% não
+   podem estourar a caixa. Filhos de grid/flex precisam de
+   min-width:0 para poderem encolher abaixo do conteúdo. */
+.grid > .col,
+.job,
+.job__head,
+.head__id,
+.project,
+.skillset,
+.timeline li,
+.langs li {
+    min-width: 0;
+}
+
+.head__id h1,
+.job__head h3,
+.timeline h3,
+.block > p,
+.job__bullets li,
+.project p {
+    overflow-wrap: break-word;
+}
+
+.head__contact a,
+.project h3 {
+    overflow-wrap: anywhere;
+}
+
+/* Só aparece quando o <noscript> a habilita */
+.noscript-note {
+    display: none;
+    margin-bottom: .3rem;
+    color: var(--ink-2);
+    text-align: left;
 }
 
 svg.icon {
@@ -716,32 +782,149 @@ svg.icon--fill {
         font-size: 8pt;
     }
 
+    /* ===== COLUNA ÚNICA NA IMPRESSÃO — REQUISITO DE ATS =====
+       Medido com pdftotext: em duas colunas o parser emite o texto
+       em faixas geométricas, e a data de um cargo saía depois do
+       bloco de contatos, desgarrada da empresa. Coluna única
+       produz extração estritamente linear. As seções secundárias
+       abaixo são comprimidas para uma linha cada, o que devolve as
+       ~22 linhas que faziam o PDF passar para a segunda página —
+       sem remover nenhuma informação. */
     .grid {
-        grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .col {
-        padding: .6rem 0 0;
-        gap: .75rem;
+        padding: .4rem 0 0;
+        gap: .5rem;
     }
 
-    .col--main {
-        padding-right: .8rem;
+    /* A entrelinha generosa do chinês serve a leitura em tela; no papel
+       ela custava 11 linhas e empurrava o PDF para a segunda página. */
+    :lang(zh-Hans) {
+        line-height: 1.45;
     }
 
+    :lang(zh-Hans) .block > h2 {
+        font-size: 7.6pt;
+    }
+
+    .col--main,
     .col--side {
-        padding-left: .8rem;
-        border-left: 1px solid var(--line);
+        padding-left: 0;
+        padding-right: 0;
+        border-left: 0;
         border-top: 0;
     }
 
+    /* Empresa e período na mesma linha e na ordem do DOM, para o
+       extrator emitir "Empresa · Período" adjacentes ao cargo. */
+    .job__when {
+        margin-left: 0;
+    }
+
+    .job__when::before {
+        content: "·";
+        margin-right: .3rem;
+        color: var(--ink-3);
+    }
+
+    /* Formação: título · instituição · período, em uma linha */
+    .timeline {
+        gap: .18rem;
+    }
+
+    .timeline li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 .3rem;
+    }
+
+    .timeline__org::before,
+    .timeline__when::before {
+        content: "·";
+        margin-right: .3rem;
+        color: var(--ink-3);
+    }
+
+    /* Idiomas: tudo em uma linha */
+    .langs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1.1rem;
+    }
+
+    .langs li {
+        padding-bottom: 0;
+        border-bottom: 0;
+        gap: .32rem;
+    }
+
+    .langs__level::before {
+        content: "·";
+        margin-right: .3rem;
+        color: var(--ink-3);
+    }
+
+    /* Competências: rótulo do grupo na mesma linha das tags */
+    .skillset,
+    .skillset + .skillset {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: .12rem .45rem;
+        margin-top: .2rem;
+    }
+
+    .skillset h3 {
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .skillset h3::after {
+        content: ":";
+    }
+
+    /* Projetos: nome · descrição, um por linha, sem cartões */
+    .projects {
+        grid-template-columns: 1fr;
+        gap: .18rem;
+    }
+
+    /* Nome e descrição fluem como um parágrafo só: com flex, a quebra
+       da descrição deixava o separador órfão no começo da linha. */
+    .project {
+        display: block;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+    }
+
+    .project h3 {
+        display: inline;
+    }
+
+    .project h3::after {
+        content: " — ";
+        color: var(--ink-3);
+    }
+
+    /* :not() é necessário — `.project p` vence `.project__stack` por
+       especificidade e reexibiria as tags de stack ocultas acima. */
+    .project p:not(.project__stack) {
+        display: inline;
+        margin-top: 0 !important;
+    }
+
     .block > h2 {
-        margin-bottom: .4rem;
+        margin-bottom: .3rem;
         font-size: 7.6pt;
     }
 
     .job {
-        padding-bottom: .5rem;
+        padding-bottom: .32rem;
         break-inside: avoid;
     }
 
@@ -759,16 +942,9 @@ svg.icon--fill {
         font-size: 8.6pt;
     }
 
-    .projects {
-        grid-template-columns: 1fr 1fr;
-        gap: .4rem;
-    }
-
-    .project {
-        padding: .4rem .5rem;
-        break-inside: avoid;
-    }
-
+    /* Apenas tamanhos aqui: a geometria de impressão dessas seções
+       está definida no bloco de coluna única acima, e redeclará-la
+       aqui a sobrescreveria por ordem de cascata. */
     .project:hover {
         transform: none;
         box-shadow: none;
@@ -786,17 +962,9 @@ svg.icon--fill {
         display: none;
     }
 
-    .skillset + .skillset {
-        margin-top: .5rem;
-    }
-
     .tags li {
         padding: .05rem .3rem;
         font-size: 7.6pt;
-    }
-
-    .timeline {
-        gap: .45rem;
     }
 
     .timeline h3 {
@@ -804,6 +972,7 @@ svg.icon--fill {
     }
 
     .timeline__org,
+    .timeline__when,
     .langs li {
         font-size: 8pt;
     }
@@ -815,8 +984,12 @@ svg.icon--fill {
     }
 
     .foot {
-        padding: .3rem 0 0;
+        padding: .22rem 0 0;
         font-size: 7pt;
+    }
+
+    .noscript-note {
+        display: none !important;
     }
 
     /* Links legíveis no papel */
