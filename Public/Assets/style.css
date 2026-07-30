@@ -7,18 +7,32 @@
 :root {
     color-scheme: light dark;
 
+    /* O coral da marca cumpre três papéis com exigências de contraste
+       diferentes, e tratá-los como um único valor era a causa das oito
+       falhas WCAG AA medidas no tema claro:
+         --accent        decoração (filetes, pontos, bordas) — exige 3:1
+         --accent-ink    accent como TEXTO                   — exige 4.5:1
+         --accent-solid  preenchimento sob texto            — exige 4.5:1
+         --on-accent     o texto que vai sobre o solid
+       Valores resolvidos numericamente contra as três superfícies
+       claras (#ffffff, #f5f6f8, #f3f5f7), com margem para 4.8:1. */
     --accent: #c85c3c;
     --accent-soft: #e77c5b;
+    --accent-ink: #ae5034;
+    --accent-solid: #bd5537;
+    --accent-solid-hover: #a4472c;
+    --on-accent: #ffffff;
 
     --bg: #eef0f2;
     --surface: #ffffff;
     --surface-2: #f5f6f8;
     --ink: #17202a;
     --ink-2: #4a5765;
-    --ink-3: #6d7887;
+    --ink-3: #636d7a;
     --line: #dfe3e8;
     --sidebar-bg: #f3f5f7;
     --shadow: 0 1px 2px rgba(16, 24, 32, .06), 0 12px 32px rgba(16, 24, 32, .09);
+    --shadow-lift: 0 6px 18px rgba(16, 24, 32, .12);
 
     --radius: 10px;
     --sheet-w: 1080px;
@@ -34,6 +48,12 @@
 :root[data-theme="dark"] {
     --accent: #e77c5b;
     --accent-soft: #f0a189;
+    --accent-ink: #e77c5b;
+    --accent-solid: #e77c5b;
+    --accent-solid-hover: #f0a189;
+    /* No escuro, texto branco sobre o coral dá 2,83:1. Tinta escura
+       sobre o mesmo coral dá 6,85:1 — e lê melhor num tema escuro. */
+    --on-accent: #0a0e12;
 
     --bg: #0a0e12;
     --surface: #131a21;
@@ -44,6 +64,7 @@
     --line: #253039;
     --sidebar-bg: #0f161c;
     --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 16px 40px rgba(0, 0, 0, .45);
+    --shadow-lift: 0 6px 18px rgba(0, 0, 0, .55);
 }
 
 *,
@@ -217,14 +238,9 @@ svg.icon--fill {
     background: var(--surface-2);
 }
 
-.chip:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
 .chip[aria-pressed="true"] {
-    color: #fff;
-    background: var(--accent);
+    color: var(--on-accent);
+    background: var(--accent-solid);
 }
 
 .chip--icon {
@@ -234,14 +250,14 @@ svg.icon--fill {
 /* Especificidade acima de `.toolbar > .chip`, senão o fundo branco vence */
 .toolbar > .chip--cta {
     margin-left: auto;
-    color: #fff;
-    background: var(--accent);
-    border-color: var(--accent);
+    color: var(--on-accent);
+    background: var(--accent-solid);
+    border-color: var(--accent-solid);
 }
 
 .toolbar > .chip--cta:hover {
-    color: #fff;
-    background: var(--accent-soft);
+    color: var(--on-accent);
+    background: var(--accent-solid-hover);
     transform: translateY(-1px);
 }
 
@@ -286,7 +302,7 @@ svg.icon--fill {
     height: 132px;
     border-radius: 50%;
     overflow: hidden;
-    background: var(--accent);
+    background: var(--accent-solid);
     box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent);
 }
 
@@ -298,7 +314,7 @@ svg.icon--fill {
     font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: .05em;
-    color: #fff;
+    color: var(--on-accent);
 }
 
 .head__photo img {
@@ -325,7 +341,7 @@ svg.icon--fill {
     margin-top: .35rem;
     font-size: clamp(.9rem, 1.6vw, 1.02rem);
     font-weight: 500;
-    color: var(--accent);
+    color: var(--accent-ink);
 }
 
 .head__place {
@@ -361,8 +377,17 @@ svg.icon--fill {
 }
 
 .link:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+    color: var(--accent-ink);
+    border-bottom-color: var(--accent-ink);
+}
+
+/* Um único anel de foco desenhado para todos os alvos focáveis, em vez
+   do outline padrão do navegador em alguns e um anel próprio em outros. */
+.link:focus-visible,
+.chip:focus-visible,
+.project:focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
 }
 
 /* ---------- Grade principal ---------- */
@@ -392,7 +417,7 @@ svg.icon--fill {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .13em;
-    color: var(--accent);
+    color: var(--accent-ink);
 }
 
 .block > h2::after {
@@ -508,18 +533,13 @@ svg.icon--fill {
 .project:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .1);
-}
-
-.project:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    box-shadow: var(--shadow-lift);
 }
 
 .project h3 {
     font-family: var(--mono);
     font-size: .86rem;
-    color: var(--accent);
+    color: var(--accent-ink);
     overflow-wrap: anywhere;
 }
 
@@ -684,9 +704,19 @@ svg.icon--fill {
     }
 }
 
+/* O que incomoda quem pede movimento reduzido é o deslocamento, não a
+   mudança de cor — e a cor aqui é retorno de estado (hover, foco).
+   Então removemos só o transform e mantemos as transições de cor. */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
+    .toolbar > .chip--cta:hover,
+    .project:hover {
+        transform: none;
+    }
+
+    .chip,
+    .project,
+    .link {
+        transition-property: background-color, color, border-color, outline-color;
     }
 }
 
@@ -711,7 +741,14 @@ svg.icon--fill {
         --line: #c8ccd2;
         --accent: #a8482c;
         --accent-soft: #a8482c;
+        --accent-ink: #a8482c;
+        --accent-solid: #a8482c;
+        --accent-solid-hover: #a8482c;
+        /* Precisa ser reafirmado: sem isto, imprimir a partir do tema
+           escuro levaria --on-accent escuro para cima do coral. */
+        --on-accent: #fff;
         --shadow: none;
+        --shadow-lift: none;
     }
 
     html,
