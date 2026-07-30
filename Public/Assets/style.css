@@ -1,0 +1,830 @@
+/* =========================================================
+   Currículo — Luis Francisco Bissoli do Amparo
+   CSS autoral, sem framework. Tema claro/escuro + impressão.
+   ========================================================= */
+
+/* ---------- Tokens ---------- */
+:root {
+    color-scheme: light dark;
+
+    --accent: #c85c3c;
+    --accent-soft: #e77c5b;
+
+    --bg: #eef0f2;
+    --surface: #ffffff;
+    --surface-2: #f5f6f8;
+    --ink: #17202a;
+    --ink-2: #4a5765;
+    --ink-3: #6d7887;
+    --line: #dfe3e8;
+    --sidebar-bg: #f3f5f7;
+    --shadow: 0 1px 2px rgba(16, 24, 32, .06), 0 12px 32px rgba(16, 24, 32, .09);
+
+    --radius: 10px;
+    --sheet-w: 1080px;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+:root[data-theme="dark"] {
+    --accent: #e77c5b;
+    --accent-soft: #f0a189;
+
+    --bg: #0a0e12;
+    --surface: #131a21;
+    --surface-2: #1a232c;
+    --ink: #e8edf2;
+    --ink-2: #aab6c2;
+    --ink-3: #7d8b99;
+    --line: #253039;
+    --sidebar-bg: #0f161c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 16px 40px rgba(0, 0, 0, .45);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: clamp(1rem, 4vw, 3rem) clamp(.75rem, 3vw, 2rem) 4rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+:lang(zh-Hans) {
+    line-height: 1.75;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+svg.icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Marcas de terceiros vêm como silhueta preenchida */
+svg.icon--fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* ---------- Barra de controles ---------- */
+.toolbar {
+    max-width: var(--sheet-w);
+    margin: 0 auto .9rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .45rem;
+}
+
+.toolbar__group {
+    display: flex;
+    gap: .25rem;
+    padding: .2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .45rem .8rem;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--ink-2);
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+
+.toolbar > .chip {
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.chip:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+}
+
+.chip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.chip[aria-pressed="true"] {
+    color: #fff;
+    background: var(--accent);
+}
+
+.chip--icon {
+    padding: .45rem .6rem;
+}
+
+/* Especificidade acima de `.toolbar > .chip`, senão o fundo branco vence */
+.toolbar > .chip--cta {
+    margin-left: auto;
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.toolbar > .chip--cta:hover {
+    color: #fff;
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+}
+
+/* Mostra apenas o ícone do tema oposto */
+.icon--moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .icon--sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .icon--moon {
+    display: inline;
+}
+
+/* ---------- Folha ---------- */
+.sheet {
+    max-width: var(--sheet-w);
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* ---------- Cabeçalho ---------- */
+.head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: clamp(1rem, 3vw, 2.2rem);
+    align-items: center;
+    padding: clamp(1.4rem, 3.5vw, 2.4rem);
+    border-bottom: 3px solid var(--accent);
+    background: linear-gradient(135deg, var(--surface-2), var(--surface));
+}
+
+.head__photo {
+    position: relative;
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent);
+}
+
+.head__initials {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    color: #fff;
+}
+
+.head__photo img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Sem foto disponível: cai para as iniciais */
+.head__photo img[hidden],
+.head__photo img:not([src]) {
+    display: none;
+}
+
+.head__id h1 {
+    font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+    font-weight: 700;
+    letter-spacing: -.015em;
+}
+
+.head__role {
+    margin-top: .35rem;
+    font-size: clamp(.9rem, 1.6vw, 1.02rem);
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.head__place {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .5rem;
+    font-size: .87rem;
+    color: var(--ink-3);
+}
+
+.head__contact {
+    display: grid;
+    gap: .42rem;
+    font-size: .86rem;
+}
+
+.head__contact li {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    color: var(--ink-2);
+}
+
+.head__contact .icon {
+    color: var(--accent);
+}
+
+.link {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .18s ease, color .18s ease;
+}
+
+.link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Grade principal ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+}
+
+.col {
+    padding: clamp(1.3rem, 3vw, 2.2rem);
+    display: grid;
+    gap: clamp(1.4rem, 3vw, 2rem);
+    align-content: start;
+}
+
+.col--side {
+    background: var(--sidebar-bg);
+    border-left: 1px solid var(--line);
+}
+
+.block > h2 {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: .9rem;
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    color: var(--accent);
+}
+
+.block > h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.block p + p {
+    margin-top: .65rem;
+}
+
+.block > p {
+    color: var(--ink-2);
+}
+
+/* ---------- Experiência ---------- */
+.job {
+    position: relative;
+    padding: 0 0 1.15rem 1.15rem;
+    border-left: 2px solid var(--line);
+}
+
+.job:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+}
+
+.job::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: .45rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.job__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .15rem .6rem;
+}
+
+.job__head h3 {
+    flex: 1 1 100%;
+    font-size: 1.03rem;
+    font-weight: 650;
+}
+
+.job__org {
+    font-size: .89rem;
+    font-weight: 500;
+    color: var(--ink-2);
+}
+
+.job__when {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .01em;
+    color: var(--ink-3);
+    white-space: nowrap;
+}
+
+.job__bullets {
+    margin-top: .5rem;
+    display: grid;
+    gap: .3rem;
+}
+
+.job__bullets li {
+    position: relative;
+    padding-left: .95rem;
+    font-size: .9rem;
+    color: var(--ink-2);
+}
+
+.job__bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .62em;
+    width: 5px;
+    height: 1.5px;
+    background: var(--accent);
+}
+
+.job__bullets li:empty {
+    display: none;
+}
+
+/* ---------- Projetos ---------- */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: .7rem;
+}
+
+.project {
+    display: block;
+    padding: .8rem .9rem;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.project:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .1);
+}
+
+.project:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.project h3 {
+    font-family: var(--mono);
+    font-size: .86rem;
+    color: var(--accent);
+    overflow-wrap: anywhere;
+}
+
+.project p {
+    margin-top: .35rem;
+    font-size: .84rem;
+    color: var(--ink-2);
+}
+
+.project__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+    margin-top: .55rem !important;
+}
+
+.project__stack span {
+    padding: .1rem .42rem;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    color: var(--ink-3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+}
+
+/* ---------- Competências ---------- */
+.skillset + .skillset {
+    margin-top: .95rem;
+}
+
+.skillset h3 {
+    margin-bottom: .4rem;
+    font-size: .82rem;
+    font-weight: 650;
+    color: var(--ink);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+}
+
+.tags li {
+    padding: .2rem .55rem;
+    font-size: .78rem;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+}
+
+.tags--plain li {
+    background: transparent;
+}
+
+/* ---------- Formação ---------- */
+.timeline {
+    display: grid;
+    gap: .95rem;
+}
+
+.timeline h3 {
+    font-size: .88rem;
+    font-weight: 650;
+}
+
+.timeline__org {
+    font-size: .82rem;
+    color: var(--ink-2);
+}
+
+.timeline__when {
+    font-family: var(--mono);
+    font-size: .73rem;
+    color: var(--ink-3);
+}
+
+.timeline__when:empty {
+    display: none;
+}
+
+/* ---------- Idiomas ---------- */
+.langs {
+    display: grid;
+    gap: .45rem;
+}
+
+.langs li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .6rem;
+    font-size: .88rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px dashed var(--line);
+}
+
+.langs__level {
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--ink-3);
+}
+
+/* ---------- Rodapé ---------- */
+.foot {
+    padding: .85rem clamp(1.3rem, 3vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    background: var(--surface-2);
+    font-size: .75rem;
+    color: var(--ink-3);
+    text-align: right;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .col--side {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .head {
+        grid-template-columns: auto 1fr;
+    }
+
+    .head__contact {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        font-size: 14.5px;
+    }
+
+    .head {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .head__place,
+    .head__contact li {
+        justify-content: center;
+    }
+
+    .job__when {
+        margin-left: 0;
+    }
+
+    .chip--cta {
+        margin-left: 0;
+    }
+
+    .toolbar {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* =========================================================
+   Impressão / PDF — força tema claro, 1 página A4
+   ========================================================= */
+@page {
+    size: A4;
+    margin: 10mm;
+}
+
+@media print {
+    :root,
+    :root[data-theme="dark"] {
+        --bg: #fff;
+        --surface: #fff;
+        --surface-2: #fff;
+        --sidebar-bg: #fff;
+        --ink: #000;
+        --ink-2: #222;
+        --ink-3: #555;
+        --line: #c8ccd2;
+        --accent: #a8482c;
+        --accent-soft: #a8482c;
+        --shadow: none;
+    }
+
+    html,
+    body {
+        background: #fff !important;
+        font-size: 9.1pt;
+        line-height: 1.42;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .sheet {
+        max-width: none;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    /* A4 mede ~794px, o que dispararia o breakpoint de 900px.
+       Aqui reafirmamos as 3 colunas para não desperdiçar altura. */
+    .head {
+        padding: 0 0 .5rem;
+        border-bottom-width: 2px;
+        background: none;
+        gap: .9rem;
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .head__contact {
+        grid-column: auto;
+    }
+
+    .head__photo {
+        width: 78px;
+        height: 78px;
+        box-shadow: none;
+        border: 1.5px solid var(--accent);
+    }
+
+    .head__initials {
+        font-size: 1.6rem;
+    }
+
+    .head__id h1 {
+        font-size: 16pt;
+    }
+
+    .head__role {
+        font-size: 9.4pt;
+        margin-top: .15rem;
+    }
+
+    .head__place {
+        margin-top: .2rem;
+        font-size: 8pt;
+    }
+
+    .head__contact {
+        gap: .18rem;
+        font-size: 8pt;
+    }
+
+    .grid {
+        grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+    }
+
+    .col {
+        padding: .6rem 0 0;
+        gap: .75rem;
+    }
+
+    .col--main {
+        padding-right: .8rem;
+    }
+
+    .col--side {
+        padding-left: .8rem;
+        border-left: 1px solid var(--line);
+        border-top: 0;
+    }
+
+    .block > h2 {
+        margin-bottom: .4rem;
+        font-size: 7.6pt;
+    }
+
+    .job {
+        padding-bottom: .5rem;
+        break-inside: avoid;
+    }
+
+    .job__head h3 {
+        font-size: 9.8pt;
+    }
+
+    .job__bullets {
+        margin-top: .2rem;
+        gap: .1rem;
+    }
+
+    .job__bullets li,
+    .job__org {
+        font-size: 8.6pt;
+    }
+
+    .projects {
+        grid-template-columns: 1fr 1fr;
+        gap: .4rem;
+    }
+
+    .project {
+        padding: .4rem .5rem;
+        break-inside: avoid;
+    }
+
+    .project:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .project h3 {
+        font-size: 8.2pt;
+    }
+
+    .project p {
+        font-size: 8pt;
+    }
+
+    .project__stack {
+        display: none;
+    }
+
+    .skillset + .skillset {
+        margin-top: .5rem;
+    }
+
+    .tags li {
+        padding: .05rem .3rem;
+        font-size: 7.6pt;
+    }
+
+    .timeline {
+        gap: .45rem;
+    }
+
+    .timeline h3 {
+        font-size: 8.4pt;
+    }
+
+    .timeline__org,
+    .langs li {
+        font-size: 8pt;
+    }
+
+    .block,
+    .skillset,
+    .timeline li {
+        break-inside: avoid;
+    }
+
+    .foot {
+        padding: .3rem 0 0;
+        font-size: 7pt;
+    }
+
+    /* Links legíveis no papel */
+    a {
+        text-decoration: none;
+    }
+
+    .link {
+        border: 0;
+    }
+}

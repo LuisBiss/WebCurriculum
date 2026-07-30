@@ -1,12 +1,46 @@
 {
   "hosting": {
     "public": "Public",
+    "cleanUrls": true,
     "rewrites": [
       {
         "source": "/",
         "destination": "/Index.html"
       }
-     ],
+    ],
+    "headers": [
+      {
+        "source": "/Assets/**/*.@(css|js|svg|jpg|jpeg|png|webp)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=604800"
+          }
+        ]
+      },
+      {
+        "source": "/Index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          }
+        ]
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
