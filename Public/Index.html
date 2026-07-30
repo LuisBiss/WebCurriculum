@@ -25,10 +25,11 @@
     <link rel="alternate" hreflang="zh" href="https://curriculo-luis-francisco.web.app/?lang=zh">
 
     <link rel="icon" href="Assets/img/favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+
+    <!-- Fontes auto-hospedadas: nenhuma requisição a terceiros. O preload
+         evita a cadeia serial CSS -> woff2 no primeiro texto pintado. -->
+    <link rel="preload" href="Assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Assets/fonts/jetbrains-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="Assets/style.css">
 
     <!-- Sem JS a barra de controles é inerte: os três botões não fariam nada.
@@ -74,7 +75,14 @@
         <header class="head">
             <div class="head__photo">
                 <span class="head__initials" aria-hidden="true">LF</span>
-                <img src="Assets/img/profile.jpg" alt="" id="profile-photo" width="132" height="132" decoding="async">
+                <!-- 320x320 (2x do círculo de 132px). alt vazio de propósito:
+                     o <h1> ao lado já nomeia a pessoa, então a foto é
+                     decorativa para um leitor de tela. -->
+                <picture>
+                    <source srcset="Assets/img/profile.webp" type="image/webp">
+                    <img src="Assets/img/profile.jpg" alt="" id="profile-photo" width="132" height="132"
+                        decoding="async" fetchpriority="high">
+                </picture>
             </div>
             <div class="head__id">
                 <h1>Luis Francisco Bissoli do Amparo</h1>
@@ -350,7 +358,9 @@
         </footer>
     </main>
 
-    <script src="Assets/app.js"></script>
+    <!-- defer: o português já está no HTML, então nada do primeiro paint
+         depende deste script — ele só troca idioma, tema e dispara a impressão. -->
+    <script src="Assets/app.js" defer></script>
 </body>
 
 </html>

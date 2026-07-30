@@ -3,6 +3,41 @@
    CSS autoral, sem framework. Tema claro/escuro + impressão.
    ========================================================= */
 
+/* ---------- Fontes auto-hospedadas ----------
+   Antes vinham do Google Fonts, o que custava duas resoluções de DNS
+   + TLS e uma cadeia serial (CSS de terceiro -> woff2) só para o
+   primeiro texto aparecer. Agora saem do mesmo domínio.
+
+   Inter é a versão VARIÁVEL (eixo 400–700): um arquivo cobre todos os
+   pesos usados, incluindo o 650 dos subtítulos, que num arquivo
+   estático seria arredondado para 700.
+
+   Subset: apenas `latin`. Ele já cobre português e inglês (incluindo
+   ã ç õ í â) e a pontuação geral U+2000–206F, onde vive o travessão.
+   O chinês não usa estas faces — vem das fontes CJK do sistema. */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/inter-latin-var.woff2") format("woff2-variations"),
+         url("fonts/inter-latin-var.woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("fonts/jetbrains-mono-latin-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ---------- Tokens ---------- */
 :root {
     color-scheme: light dark;
@@ -315,6 +350,12 @@ svg.icon--fill {
     font-weight: 700;
     letter-spacing: .05em;
     color: var(--on-accent);
+}
+
+/* `display: contents` mantém a imagem ocupando o mesmo lugar no layout
+   que ocupava antes de ser envolvida pelo elemento picture. */
+.head__photo picture {
+    display: contents;
 }
 
 .head__photo img {
