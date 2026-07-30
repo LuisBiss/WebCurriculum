@@ -67,3 +67,6 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Worktrees e estado local do Claude Code
+.claude/worktrees/
