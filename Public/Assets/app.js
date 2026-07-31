@@ -41,15 +41,20 @@
 
             "about.title": "Profile",
             "about.p1": "Computer Engineering student with four years in technology, from electronics maintenance to deploying and monitoring network infrastructure. I am steering my career toward Information Security, combining a solid foundation in networking and Linux systems with continuous study of defence and penetration testing.",
-            "about.p2": "I have hands-on experience configuring Mikrotik equipment, administering servers, supporting Microsoft 365 environments and automating tasks in Bash. I program in Python, C and C++, which lets me reason about security from firmware up to the application layer.",
+            "about.p2": "I have hands-on experience configuring Mikrotik equipment, administering servers, supporting Microsoft 365 environments and automating tasks in Bash. I program in multiple programming languages, which lets me reason about security from firmware up to the application layer.",
 
             "exp.title": "Professional Experience",
 
+            "exp.thesis": "From the circuit board to the application: four years climbing the stack, one layer at a time.",
+            "exp.fassLayer": "Application and network",
+            "exp.tceesLayer": "Systems and support",
+            "exp.sinales2Layer": "Network and servers",
+            "exp.sinales1Layer": "Firmware and PCB",
             "exp.fassRole": "Software Development and API Integration",
             "exp.fassPeriod": "Jun 2025 — present",
             "exp.fassB1": "Development and maintenance of software services integrating multiple APIs, using spec-driven development supported by AI tooling.",
             "exp.fassB2": "Improved network speed and security through load balancing, log monitoring and IPsec.",
-            "exp.fassB3": "Substantial efficiency gains and cost reduction across management, data analysis and network performance.",
+            "exp.fassB3": "Reduced spending on management and data-analysis services, and improved network speed.",
 
             "exp.tceesRole": "Information Technology Intern",
             "exp.tceesPeriod": "2024 — Feb 2025",
@@ -69,6 +74,8 @@
             "proj.ctmc": "Didactic neutron chain-reaction simulator based on CTMC/Gillespie: a C computation engine exposed through a FastAPI service, with a Flask presentation site.",
             "proj.shell": "Collection of Shell automation scripts for Linux administration and routine tasks.",
             "proj.uart": "UART serial communication between two Arduino boards, built for the Microprocessors and Microcontrollers course.",
+            "proj.coffeeTag1": "Neural Networks",
+            "proj.coffeeTag2": "Computer Vision",
             "proj.coffee": "Coffee leaf disease classification with neural networks, covering image preprocessing, selectable architectures and confusion-matrix evaluation.",
 
             "skills.title": "Skills",
@@ -99,6 +106,9 @@
 
             "practice.title": "Ongoing Practice",
 
+            "cta.title": "Let's talk",
+            "cta.text": "If this profile fits a role of yours, reach out — I reply by email the same day.",
+            "cta.email": "luisfranciscobda@gmail.com",
             "foot.source": "Source code of this page",
             "foot.updated": "Last updated",
             "foot.date": "July 2026"
@@ -113,15 +123,20 @@
 
             "about.title": "个人简介",
             "about.p1": "计算机工程专业学生，拥有四年技术工作经验，涵盖电子设备维护到网络基础设施的部署与监控。目前将职业方向聚焦于信息安全，把扎实的网络与 Linux 系统基础同持续的防御及渗透测试学习相结合。",
-            "about.p2": "具备配置 Mikrotik 设备、管理服务器、支持 Microsoft 365 环境以及使用 Bash 实现自动化的实操经验。熟练使用 Python、C 与 C++ 编程，因此能够从固件层到应用层理解安全问题。",
+            "about.p2": "具备配置 Mikrotik 设备、管理服务器、支持 Microsoft 365 环境以及使用 Bash 实现自动化的实操经验。熟练使用多种编程语言，因此能够从固件层到应用层理解安全问题。",
 
             "exp.title": "工作经历",
 
+            "exp.thesis": "从电路板到应用层：四年时间，一层一层向上走。",
+            "exp.fassLayer": "应用与网络",
+            "exp.tceesLayer": "系统与支持",
+            "exp.sinales2Layer": "网络与服务器",
+            "exp.sinales1Layer": "固件与电路板",
             "exp.fassRole": "软件开发与 API 集成",
             "exp.fassPeriod": "2025年6月 — 至今",
             "exp.fassB1": "开发与维护集成多个 API 的软件服务，采用规格驱动开发（spec-driven development）并借助 AI 工具链。",
             "exp.fassB2": "通过负载均衡、日志监控与 IPsec 提升网络速度与安全性。",
-            "exp.fassB3": "在管理、数据分析与网络性能方面大幅提升效率并降低成本。",
+            "exp.fassB3": "降低管理与数据分析服务的成本，并提升网络速度。",
 
             "exp.tceesRole": "信息技术实习生",
             "exp.tceesPeriod": "2024 — 2025年2月",
@@ -141,6 +156,8 @@
             "proj.ctmc": "基于 CTMC/Gillespie 算法的中子链式反应教学模拟器：C 语言计算引擎通过 FastAPI 接口对外提供服务，并配有 Flask 展示站点。",
             "proj.shell": "用于 Linux 系统管理与日常任务的 Shell 自动化脚本集合。",
             "proj.uart": "两块 Arduino 开发板之间的 UART 串行通信，为《微处理器与微控制器》课程开发。",
+            "proj.coffeeTag1": "神经网络",
+            "proj.coffeeTag2": "计算机视觉",
             "proj.coffee": "使用神经网络对咖啡叶片病害进行分类，涵盖图像预处理、可选网络架构与混淆矩阵评估。",
 
             "skills.title": "专业技能",
@@ -171,6 +188,9 @@
 
             "practice.title": "持续实践",
 
+            "cta.title": "欢迎联系",
+            "cta.text": "如果这份履历符合贵司的职位需求，欢迎与我联系——邮件当天回复。",
+            "cta.email": "luisfranciscobda@gmail.com",
             "foot.source": "本页面的源代码",
             "foot.updated": "更新于",
             "foot.date": "2026年7月"
@@ -258,6 +278,14 @@
         });
 
         store(STORE_LANG, lang);
+
+        /* Sem isto, quem trocasse de idioma e encaminhasse o link
+           enviaria a versão errada: o parâmetro era lido, nunca escrito. */
+        try {
+            var url = new URL(location.href);
+            url.searchParams.set("lang", lang);
+            history.replaceState(null, "", url);
+        } catch (e) { /* ignora */ }
     }
 
     document.querySelectorAll("[data-lang-set]").forEach(function (btn) {
@@ -271,6 +299,10 @@
 
     function applyTheme(theme) {
         root.setAttribute("data-theme", theme);
+        /* Botão de estado binário: sem aria-pressed, um leitor de tela
+           não conseguia saber em que tema a página estava. */
+        var toggle = document.getElementById("theme-toggle");
+        if (toggle) toggle.setAttribute("aria-pressed", String(theme === "dark"));
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute("content", theme === "dark" ? "#0a0e12" : "#eef0f2");
     }
@@ -321,10 +353,16 @@
        Se Assets/img/profile.jpg não existir, ficam as iniciais. */
     var photo = document.getElementById("profile-photo");
     if (photo) {
-        photo.addEventListener("error", function () {
-            photo.hidden = true;
-        });
-        if (photo.complete && photo.naturalWidth === 0) photo.hidden = true;
+        var moldura = photo.closest(".head__photo");
+
+        function marcarFoto(ok) {
+            photo.hidden = !ok;
+            if (moldura) moldura.setAttribute("data-photo", ok ? "ok" : "fallback");
+        }
+
+        photo.addEventListener("error", function () { marcarFoto(false); });
+        photo.addEventListener("load", function () { marcarFoto(true); });
+        if (photo.complete) marcarFoto(photo.naturalWidth > 0);
     }
 
     /* ---------------- Início ---------------- */

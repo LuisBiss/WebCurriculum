@@ -202,7 +202,12 @@ a {
     overflow-wrap: anywhere;
 }
 
-/* Só aparece quando o <noscript> a habilita */
+/* Ambas só aparecem em contextos específicos: a origem dos projetos na
+   impressão, a nota quando o <noscript> a habilita. */
+.projetos__origem {
+    display: none;
+}
+
 .noscript-note {
     display: none;
     margin-bottom: .3rem;
@@ -227,14 +232,31 @@ svg.icon--fill {
     stroke: none;
 }
 
-/* ---------- Barra de controles ---------- */
+/* ---------- Barra de controles ----------
+   Sticky: o "Baixar PDF" é a conversão da página e sumia depois dos
+   primeiros 90px de um documento de ~3.700px. */
 .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     max-width: var(--sheet-w);
     margin: 0 auto .9rem;
+    padding: .5rem 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: .45rem;
+    background: var(--bg);
+}
+
+/* Sangra até as bordas para o conteúdo não passar por baixo nas laterais */
+.toolbar::before {
+    content: "";
+    position: absolute;
+    inset: 0 -50vw;
+    z-index: -1;
+    background: var(--bg);
+    box-shadow: 0 1px 0 var(--line);
 }
 
 .toolbar__group {
@@ -249,7 +271,11 @@ svg.icon--fill {
 .chip {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: .4rem;
+    /* 44px: piso de alvo de toque. Media antes: 35,4px de altura. */
+    min-height: 44px;
+    min-width: 44px;
     padding: .45rem .8rem;
     font: inherit;
     font-size: .82rem;
@@ -407,6 +433,20 @@ svg.icon--fill {
     color: var(--ink-2);
 }
 
+/* WCAG 2.2 SC 2.5.8 (AA) exige 24x24; estes links mediam 23,0px de
+   altura e ficam empilhados sem margem, então não se qualificavam na
+   exceção de espaçamento. No mobile sobem para os 44px do HIG. */
+.head__contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+}
+
+/* Só a URL curta aparece na tela; a completa é para o papel */
+.url-cheia {
+    display: none;
+}
+
 .head__contact .icon {
     color: var(--accent);
 }
@@ -497,6 +537,31 @@ svg.icon--fill {
     height: 8px;
     border-radius: 50%;
     background: var(--accent);
+}
+
+/* Linha de tese sob o título da seção */
+.tese {
+    margin: -.5rem 0 1rem;
+    font-size: .84rem;
+    font-style: italic;
+    color: var(--ink-3);
+}
+
+/* ---------- A espinha da pilha ----------
+   Cada cargo é rotulado pela camada em que ele aconteceu — firmware,
+   rede, sistemas, aplicação. É o que transforma quatro empregos numa
+   trajetória legível em vez de uma lista cronológica. */
+.job__camada {
+    display: inline-block;
+    margin-bottom: .2rem;
+    padding: .05rem .45rem;
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 3px;
 }
 
 .job__head {
@@ -703,6 +768,72 @@ svg.icon--fill {
     color: var(--ink-3);
 }
 
+/* ---------- Fecho: o pedido de conversa ---------- */
+.fecho {
+    padding: clamp(1.4rem, 3.5vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    background: linear-gradient(135deg, var(--surface-2), var(--surface));
+    text-align: center;
+}
+
+.fecho h2 {
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.fecho p {
+    max-width: 46ch;
+    margin: .4rem auto 1.1rem;
+    color: var(--ink-2);
+    font-size: .92rem;
+}
+
+.fecho__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .6rem;
+}
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: 44px;
+    padding: .6rem 1.1rem;
+    font-size: .89rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+
+.botao:hover {
+    border-color: var(--accent-ink);
+    color: var(--accent-ink);
+}
+
+.botao--primario {
+    color: var(--on-accent);
+    background: var(--accent-solid);
+    border-color: var(--accent-solid);
+}
+
+.botao--primario:hover {
+    color: var(--on-accent);
+    background: var(--accent-solid-hover);
+    border-color: var(--accent-solid-hover);
+}
+
+.botao:focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+}
+
 /* ---------- Rodapé ---------- */
 .foot {
     display: flex;
@@ -719,6 +850,13 @@ svg.icon--fill {
 
 .foot__data {
     margin-left: auto;
+}
+
+/* Media 16px de altura: abaixo dos 24x24 do SC 2.5.8 (AA) */
+.foot a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
 }
 
 /* A URL só serve no papel; o link só serve na tela. */
@@ -753,6 +891,17 @@ svg.icon--fill {
 @media (max-width: 560px) {
     body {
         font-size: 14.5px;
+    }
+
+    /* No celular o dedo é o ponteiro: 44px em tudo que é tocável */
+    .head__contact a,
+    .tags--link a,
+    .foot a {
+        min-height: 44px;
+    }
+
+    .tags--link li {
+        display: flex;
     }
 
     .head {
@@ -910,8 +1059,8 @@ svg.icon--fill {
     }
 
     .col {
-        padding: .35rem 0 0;
-        gap: .42rem;
+        padding: .3rem 0 0;
+        gap: .36rem;
     }
 
     /* A entrelinha generosa do chinês serve a leitura em tela; no papel
@@ -1060,12 +1209,26 @@ svg.icon--fill {
     }
 
     .job {
-        padding-bottom: .32rem;
+        padding-bottom: .26rem;
         break-inside: avoid;
     }
 
     .job__head h3 {
         font-size: 9.8pt;
+    }
+
+    /* No papel a camada divide a linha com o cargo, em vez de gastar
+       uma linha própria por emprego — são quatro linhas de volta. */
+    .job__camada {
+        margin-bottom: 0;
+        padding: 0 .2rem;
+        font-size: 6.4pt;
+        background: none;
+        border: .5pt solid var(--line);
+    }
+
+    .job__head h3 {
+        flex: 0 1 auto;
     }
 
     .job__bullets {
@@ -1125,12 +1288,46 @@ svg.icon--fill {
     }
 
     .foot__fonte,
-    .noscript-note {
+    .noscript-note,
+    .tese {
         display: none !important;
     }
 
     .foot__url {
         display: inline;
+    }
+
+    /* ===== EVIDÊNCIA ALCANÇÁVEL NO PAPEL =====
+       O PDF continha uma única URL. Um ATS descarta anotações de link e
+       deixa só texto, então quem decide não conseguia chegar a nada do
+       que o currículo afirma. Aqui as URLs viram texto extraível. */
+    .url-curta {
+        display: none;
+    }
+
+    .url-cheia {
+        display: inline;
+    }
+
+    .projetos__origem {
+        display: block;
+        margin: -.25rem 0 .2rem;
+        font-family: var(--mono);
+        font-size: 7pt;
+        color: var(--ink-3);
+    }
+
+    .tags--link a::after {
+        content: " " attr(data-url);
+        font-family: var(--mono);
+        font-size: 7pt;
+        color: var(--ink-3);
+    }
+
+    /* As iniciais ficam atrás da foto: invisíveis na tela, mas vazavam
+       como um "LF" solto na camada de texto do PDF. */
+    [data-photo="ok"] .head__initials {
+        display: none;
     }
 
     /* Links legíveis no papel */

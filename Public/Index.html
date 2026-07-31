@@ -125,7 +125,8 @@
                         <path d="M7 10.5V17M7 7.2v.1M11.5 17v-3.6a2.1 2.1 0 0 1 4.2 0V17M11.5 10.5V17" />
                     </svg>
                     <a href="https://www.linkedin.com/in/luis-francisco-bissoli-do-amparo-3152341b7/" class="link"
-                        rel="noopener">linkedin.com/in/luis-francisco</a>
+                        rel="noopener"><span class="url-curta">linkedin.com/in/luis-francisco</span><span
+                            class="url-cheia">linkedin.com/in/luis-francisco-bissoli-do-amparo-3152341b7</span></a>
                 </li>
             </ul>
         </header>
@@ -141,14 +142,17 @@
                         sistemas Linux ao estudo contínuo de defesa e de testes de intrusão.</p>
                     <p data-i18n="about.p2">Tenho experiência prática em configuração de equipamentos Mikrotik,
                         administração de servidores, suporte a ambientes Microsoft 365 e automação em Bash. Programo em
-                        Python, C e C++, o que me permite entender a segurança desde o firmware até a aplicação.</p>
+                        múltiplas linguagens de programação, o que me permite entender a segurança desde o
+                        firmware até a aplicação.</p>
                 </section>
 
                 <section class="block">
                     <h2 data-i18n="exp.title">Experiência Profissional</h2>
+                    <p class="tese" data-i18n="exp.thesis">Da placa de circuito à aplicação: quatro anos subindo a pilha, uma camada por vez.</p>
 
                     <article class="job">
                         <div class="job__head">
+                            <p class="job__camada" data-i18n="exp.fassLayer">Aplicação e rede</p>
                             <h3 data-i18n="exp.fassRole">Desenvolvimento de Software e Integração de APIs</h3>
                             <p class="job__org">Fass Advogados</p>
                             <p class="job__when">
@@ -160,13 +164,14 @@
                                 múltiplas APIs, com spec-driven development apoiado por ferramentas de IA.</li>
                             <li data-i18n="exp.fassB2">Melhoria de velocidade e segurança da rede com load balancing,
                                 monitoramento de logs e IPsec.</li>
-                            <li data-i18n="exp.fassB3">Ganho expressivo de eficiência e redução de custos em gestão,
-                                análise de dados e desempenho de rede.</li>
+                            <li data-i18n="exp.fassB3">Redução de custos com serviços de gestão e de análise de dados, e
+                                ganho de velocidade na rede.</li>
                         </ul>
                     </article>
 
                     <article class="job">
                         <div class="job__head">
+                            <p class="job__camada" data-i18n="exp.tceesLayer">Sistemas e suporte</p>
                             <h3 data-i18n="exp.tceesRole">Estágio em Tecnologia da Informação</h3>
                             <p class="job__org">TCEES — Tribunal de Contas do Estado do Espírito Santo</p>
                             <p class="job__when">
@@ -183,6 +188,7 @@
 
                     <article class="job">
                         <div class="job__head">
+                            <p class="job__camada" data-i18n="exp.sinales2Layer">Rede e servidores</p>
                             <h3 data-i18n="exp.sinales2Role">Auxiliar Eletrotécnico</h3>
                             <p class="job__org">Sinales</p>
                             <p class="job__when">
@@ -199,6 +205,7 @@
 
                     <article class="job">
                         <div class="job__head">
+                            <p class="job__camada" data-i18n="exp.sinales1Layer">Firmware e PCI</p>
                             <h3 data-i18n="exp.sinales1Role">Estágio em Eletrônica</h3>
                             <p class="job__org">Sinales</p>
                             <p class="job__when">
@@ -214,8 +221,12 @@
 
                 <section class="block">
                     <h2 data-i18n="proj.title">Projetos</h2>
+                    <!-- Só na impressão: os nomes abaixo são exatamente os dos
+                         repositórios, então uma origem resolve os quatro sem
+                         gastar uma linha de URL por projeto. -->
+                    <p class="projetos__origem">github.com/LuisBiss</p>
                     <div class="projects">
-                        <a class="project" href="https://github.com/LuisBiss/atomic-ctmc-simulator" rel="noopener">
+                        <a class="project" href="https://github.com/LuisBiss/atomic-ctmc-simulator" rel="noopener" data-repo="LuisBiss/atomic-ctmc-simulator">
                             <h3>atomic-ctmc-simulator</h3>
                             <p data-i18n="proj.ctmc">Simulador didático de reação em cadeia de nêutrons por
                                 CTMC/Gillespie: motor de cálculo em C exposto por uma API FastAPI, com site de
@@ -223,24 +234,24 @@
                             <p class="project__stack"><span>C</span><span>Python</span><span>FastAPI</span><span>Flask</span>
                             </p>
                         </a>
-                        <a class="project" href="https://github.com/LuisBiss/Script_Shell" rel="noopener">
+                        <a class="project" href="https://github.com/LuisBiss/Script_Shell" rel="noopener" data-repo="LuisBiss/Script_Shell">
                             <h3>Script_Shell</h3>
                             <p data-i18n="proj.shell">Coleção de scripts de automação em Shell para tarefas de
                                 administração e rotina em Linux.</p>
                             <p class="project__stack"><span>Bash</span><span>Linux</span></p>
                         </a>
-                        <a class="project" href="https://github.com/LuisBiss/Fighting_Game" rel="noopener">
+                        <a class="project" href="https://github.com/LuisBiss/Fighting_Game" rel="noopener" data-repo="LuisBiss/Fighting_Game">
                             <h3>Fighting_Game (UART)</h3>
                             <p data-i18n="proj.uart">Comunicação serial UART entre duas placas Arduino, desenvolvida na
                                 disciplina de Microprocessadores e Microcontroladores.</p>
                             <p class="project__stack"><span>C++</span><span>Arduino</span><span>UART</span></p>
                         </a>
-                        <a class="project" href="https://github.com/LuisBiss/Coffee_Diseases_Finder" rel="noopener">
+                        <a class="project" href="https://github.com/LuisBiss/Coffee_Diseases_Finder" rel="noopener" data-repo="LuisBiss/Coffee_Diseases_Finder">
                             <h3>Coffee_Diseases_Finder</h3>
                             <p data-i18n="proj.coffee">Classificação de doenças em folhas de café por redes neurais,
                                 com pré-processamento de imagens, escolha entre arquiteturas e matriz de confusão.</p>
-                            <p class="project__stack"><span>Python</span><span>Redes Neurais</span><span>Visão
-                                    Computacional</span></p>
+                            <p class="project__stack"><span>Python</span><span data-i18n="proj.coffeeTag1">Redes Neurais</span><span
+                                    data-i18n="proj.coffeeTag2">Visão Computacional</span></p>
                         </a>
                     </div>
                 </section>
@@ -348,12 +359,39 @@
                 <section class="block block--compacto">
                     <h2 data-i18n="practice.title">Prática Contínua</h2>
                     <ul class="tags tags--link">
-                        <li><a href="https://tryhackme.com/p/luisfranciscobda" rel="noopener">TryHackMe</a></li>
-                        <li><a href="https://leetcode.com/u/LouisFB/" rel="noopener">LeetCode</a></li>
+                        <li><a href="https://tryhackme.com/p/luisfranciscobda" rel="noopener"
+                                data-url="tryhackme.com/p/luisfranciscobda">TryHackMe</a></li>
+                        <li><a href="https://leetcode.com/u/LouisFB/" rel="noopener"
+                                data-url="leetcode.com/u/LouisFB">LeetCode</a></li>
                     </ul>
                 </section>
             </aside>
         </div>
+
+        <!-- Fecho: a página argumentava por sete telas e não pedia nada.
+             Fora da impressão — no papel os contatos já estão no cabeçalho
+             e o espaço vertical é o recurso mais escasso do PDF. -->
+        <section class="fecho no-print">
+            <h2 data-i18n="cta.title">Vamos conversar</h2>
+            <p data-i18n="cta.text">Se o perfil fizer sentido para uma vaga sua, me chame — respondo por e-mail no
+                mesmo dia.</p>
+            <div class="fecho__acoes">
+                <a class="botao botao--primario" href="mailto:luisfranciscobda@gmail.com?subject=Oportunidade%20em%20Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2" />
+                        <path d="m3.5 6.5 8.5 6.5 8.5-6.5" />
+                    </svg>
+                    <span data-i18n="cta.email">luisfranciscobda@gmail.com</span>
+                </a>
+                <a class="botao" href="tel:+5527992288775">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M6.5 3.5h3l1.5 4-2 1.4a11.5 11.5 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z" />
+                    </svg>
+                    <span>+55 (27) 99228-8775</span>
+                </a>
+            </div>
+        </section>
 
         <footer class="foot">
             <p class="noscript-note">Este currículo está disponível em inglês e 中文; a troca de idioma requer
@@ -365,7 +403,7 @@
             <p class="foot__origem">
                 <a class="link foot__fonte" href="https://github.com/LuisBiss/WebCurriculum" rel="noopener"
                     data-i18n="foot.source">Código-fonte desta página</a>
-                <span class="foot__url">curriculo-luis-francisco.web.app</span>
+                <span class="foot__url">curriculo-luis-francisco.web.app · github.com/LuisBiss/WebCurriculum</span>
             </p>
 
             <p class="foot__data"><span data-i18n="foot.updated">Atualizado em</span>
