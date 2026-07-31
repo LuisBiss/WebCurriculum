@@ -638,6 +638,23 @@ svg.icon--fill {
     background: transparent;
 }
 
+/* Tags que são links verificáveis (perfis de prática) */
+.tags--link a {
+    display: block;
+    margin: -.2rem -.55rem;
+    padding: .2rem .55rem;
+    text-decoration: none;
+    transition: color .18s ease;
+}
+
+.tags--link li:hover {
+    border-color: var(--accent-ink);
+}
+
+.tags--link li:hover a {
+    color: var(--accent-ink);
+}
+
 /* ---------- Formação ---------- */
 .timeline {
     display: grid;
@@ -688,12 +705,29 @@ svg.icon--fill {
 
 /* ---------- Rodapé ---------- */
 .foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .25rem 1.2rem;
     padding: .85rem clamp(1.3rem, 3vw, 2.2rem);
     border-top: 1px solid var(--line);
     background: var(--surface-2);
     font-size: .75rem;
     color: var(--ink-3);
-    text-align: right;
+}
+
+.foot__data {
+    margin-left: auto;
+}
+
+/* A URL só serve no papel; o link só serve na tela. */
+.foot__url {
+    display: none;
+}
+
+.noscript-note {
+    flex: 1 1 100%;
 }
 
 /* ---------- Responsivo ---------- */
@@ -796,7 +830,10 @@ svg.icon--fill {
     body {
         background: #fff !important;
         font-size: 9.1pt;
-        line-height: 1.42;
+        /* 1.38 x 9.1pt = 12,6pt de entrelinha: confortável no papel e o
+           que faz o português — o mais verboso dos três — fechar em uma
+           página junto com o rodapé. */
+        line-height: 1.38;
     }
 
     body {
@@ -873,8 +910,8 @@ svg.icon--fill {
     }
 
     .col {
-        padding: .4rem 0 0;
-        gap: .5rem;
+        padding: .35rem 0 0;
+        gap: .42rem;
     }
 
     /* A entrelinha generosa do chinês serve a leitura em tela; no papel
@@ -1001,6 +1038,27 @@ svg.icon--fill {
         font-size: 7.6pt;
     }
 
+    /* Seções de uma linha só: o título entra na mesma linha do conteúdo,
+       como já acontece com os grupos de competências. */
+    .block--compacto {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: .1rem .45rem;
+    }
+
+    .block--compacto > h2 {
+        margin-bottom: 0;
+    }
+
+    .block--compacto > h2::after {
+        content: none;
+    }
+
+    .block > p + p {
+        margin-top: .3rem;
+    }
+
     .job {
         padding-bottom: .32rem;
         break-inside: avoid;
@@ -1066,8 +1124,13 @@ svg.icon--fill {
         font-size: 7pt;
     }
 
+    .foot__fonte,
     .noscript-note {
         display: none !important;
+    }
+
+    .foot__url {
+        display: inline;
     }
 
     /* Links legíveis no papel */

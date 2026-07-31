@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Hoje: HTML, CSS e JavaScript estáticos, sem build, sem `package.json`, sem framework. Fontes vêm do Google Fonts por CDN; os ícones são SVG inline.
+Hoje: HTML, CSS e JavaScript estáticos, sem build, sem `package.json`, sem framework. **Zero requisições a terceiros**: fontes auto-hospedadas em `Public/Assets/fonts/` (Inter variável 400–700 e JetBrains Mono 500, subset `latin`) e ícones em SVG inline.
 
 O usuário **não** marcou "sem dependências externas / build" como restrição quando perguntado diretamente. Portanto adotar um build ou framework no futuro não está vedado — mas também não foi aprovado. Decisão aberta.
 
@@ -49,19 +49,19 @@ Restrições duráveis confirmadas pelo usuário:
 - **O PDF precisa passar por filtro ATS.** Texto real e selecionável, nunca imagem.
 - **Permanecer em Firebase Hosting, na mesma URL.** Sem migrar hospedagem nem trocar domínio.
 
-Tensão conhecida a resolver em trabalho futuro (registrada, não resolvida aqui): o PDF atual usa **layout de duas colunas**. Parsers ATS antigos leem duas colunas fora de ordem, embaralhando cargos e datas. "Uma página" e "compatível com ATS" empurram em direções opostas — uma coluna é mais segura para máquina e gasta mais altura. Decisão pendente do usuário.
+Tensão **resolvida em 30/07/2026**: o PDF usava duas colunas, e a extração medida com `pdftotext` mostrou a data de um cargo saindo depois do bloco de contatos, desgarrada da empresa. A impressão passou a ser **coluna única** (a tela continua em duas), com as seções secundárias — Formação, Idiomas, Competências, Projetos, Prática — comprimidas para uma linha cada. Extração linear e uma página nos três idiomas, sem remover informação. Qualquer conteúdo novo precisa ser verificado contra as duas coisas ao mesmo tempo.
 
-Fatos de produto explicitamente **indefinidos**:
+Resolvido em 30/07/2026 (não há mais fatos indefinidos no conteúdo):
 
-- Cargo e atribuições na Fass Advogados (empregador atual desde jun/2025) — desconhecidos. Cinco marcadores `[TODO]` no conteúdo aguardam isso.
-- Instituição e ano da certificação de levantamento topográfico com drones.
+- **Fass Advogados, desde jun/2025** — Desenvolvimento de Software e Integração de APIs. Desenvolve e mantém serviços integrando múltiplas APIs, com spec-driven development apoiado por ferramentas de IA; atua também em rede, com load balancing, monitoramento de logs e IPsec.
+- **Certificação de levantamento topográfico com drones: CREA, 2025.**
 
 ## Brand Commitments
 
 - Nome real e completo: Luis Francisco Bissoli do Amparo.
 - Contatos confirmados: `luisfranciscobda@gmail.com`, `+55 (27) 99228-8775`, `github.com/LuisBiss`, LinkedIn `luis-francisco-bissoli-do-amparo-3152341b7`.
 - Posicionamento escolhido pelo usuário: **Segurança da Informação**, cobrindo três trilhas simultâneas — infra/redes com foco em segurança, SOC/defesa (blue team) e pentest/ofensiva (red team).
-- Foto de perfil: o usuário vai fornecer uma nova. Slot em `Public/Assets/img/profile.jpg`, com as iniciais "LF" como fallback.
+- Foto de perfil entregue em 30/07/2026 e reenquadrada em cabeça-e-ombros: `profile.webp` / `profile.jpg` a 320×320, servidos por `<picture>`, com as iniciais "LF" como fallback. O original em 960×1280 fica em `_fonte-original/` (fora do deploy e do git).
 
 ## Evidence on Hand
 
@@ -70,15 +70,15 @@ Real e verificável:
 - Graduação em Engenharia da Computação, FAESA, conclusão prevista dez/2026.
 - Emprego atual: Fass Advogados, desde jun/2025. Anteriores: TCEES (estágio em TI, 2024 – fev/2025), Sinales (auxiliar eletrotécnico 2023–2024; estágio em eletrônica 2022–2023).
 - Inglês B2 (Fisk).
-- Certificação de levantamento topográfico com drones.
+- Certificação de levantamento topográfico com drones (CREA, 2025).
 - Repositórios públicos: `atomic-ctmc-simulator` (motor C + FastAPI + Flask), `RecomendAI` (MLP), `Coffee_Diseases_Finder`, `Classificacao-Animais`, `Fighting_Game` (UART entre Arduinos), `Script_Shell`, `House_on_WPF`, `LeetCode_Problems`.
-- Prática em TryHackMe e Hack The Box.
+- Perfis públicos de prática: TryHackMe (`tryhackme.com/p/luisfranciscobda`) e LeetCode (`leetcode.com/u/LouisFB/`). **Não usa Hack The Box** — confirmado pelo usuário em 30/07/2026.
 
 Ausências que trabalho futuro **não deve fabricar**:
 
 - Nenhuma certificação formal de segurança (sem Security+, CCNA, CEH, eJPT, ISO 27001).
 - Nenhuma experiência profissional em pentest — a prática ofensiva é de laboratório. Ele busca vagas de red team sem histórico pago na área.
-- Nenhum ranking, sala concluída ou pontuação confirmada em TryHackMe/HTB. Só as plataformas foram confirmadas.
+- Nenhum ranking, sala concluída ou pontuação confirmada no TryHackMe ou LeetCode. Só a existência dos perfis foi confirmada.
 - **Não fala chinês.** O usuário confirmou isso e ainda assim quer as três versões e trata empresas chinesas como público real. Logo: a versão 中文 existe para alcance, e a seção de idiomas lista apenas português e inglês. Nunca listar chinês como competência.
 - Nenhum cliente, número, métrica ou depoimento. Nada de resultados quantificados até que ele forneça.
 

@@ -149,16 +149,19 @@
 
                     <article class="job">
                         <div class="job__head">
-                            <h3 data-i18n="exp.fassRole">[TODO — cargo na Fass Advogados]</h3>
+                            <h3 data-i18n="exp.fassRole">Desenvolvimento de Software e Integração de APIs</h3>
                             <p class="job__org">Fass Advogados</p>
                             <p class="job__when">
                                 <time datetime="2025-06"><span data-i18n="exp.fassPeriod">jun/2025 — atual</span></time>
                             </p>
                         </div>
                         <ul class="job__bullets">
-                            <li data-i18n="exp.fassB1">[TODO — principal responsabilidade]</li>
-                            <li data-i18n="exp.fassB2">[TODO — segunda responsabilidade]</li>
-                            <li data-i18n="exp.fassB3">[TODO — resultado ou entrega de destaque]</li>
+                            <li data-i18n="exp.fassB1">Desenvolvimento e manutenção de serviços de software integrando
+                                múltiplas APIs, com spec-driven development apoiado por ferramentas de IA.</li>
+                            <li data-i18n="exp.fassB2">Melhoria de velocidade e segurança da rede com load balancing,
+                                monitoramento de logs e IPsec.</li>
+                            <li data-i18n="exp.fassB3">Ganho expressivo de eficiência e redução de custos em gestão,
+                                análise de dados e desempenho de rede.</li>
                         </ul>
                     </article>
 
@@ -232,11 +235,12 @@
                                 disciplina de Microprocessadores e Microcontroladores.</p>
                             <p class="project__stack"><span>C++</span><span>Arduino</span><span>UART</span></p>
                         </a>
-                        <a class="project" href="https://github.com/LuisBiss/RecomendAI" rel="noopener">
-                            <h3>RecomendAI</h3>
-                            <p data-i18n="proj.recomendai">Rede neural Multilayer Perceptron que gera recomendações
-                                nutricionais a partir de dados de exame de sangue.</p>
-                            <p class="project__stack"><span>Python</span><span>MLP</span></p>
+                        <a class="project" href="https://github.com/LuisBiss/Coffee_Diseases_Finder" rel="noopener">
+                            <h3>Coffee_Diseases_Finder</h3>
+                            <p data-i18n="proj.coffee">Classificação de doenças em folhas de café por redes neurais,
+                                com pré-processamento de imagens, escolha entre arquiteturas e matriz de confusão.</p>
+                            <p class="project__stack"><span>Python</span><span>Redes Neurais</span><span>Visão
+                                    Computacional</span></p>
                         </a>
                     </div>
                 </section>
@@ -271,6 +275,7 @@
                         <ul class="tags">
                             <li>Linux</li>
                             <li>Bash</li>
+                            <li>Docker</li>
                             <li>Windows Server</li>
                             <li>Microsoft 365</li>
                         </ul>
@@ -280,11 +285,12 @@
                         <h3 data-i18n="skills.dev">Desenvolvimento</h3>
                         <ul class="tags">
                             <li>Python</li>
+                            <li>TypeScript</li>
+                            <li>JavaScript</li>
                             <li>C</li>
                             <li>C++</li>
                             <li>C#</li>
                             <li>Java</li>
-                            <li>JavaScript</li>
                             <li>HTML / CSS</li>
                         </ul>
                     </div>
@@ -292,6 +298,7 @@
                     <div class="skillset">
                         <h3 data-i18n="skills.data">Dados</h3>
                         <ul class="tags">
+                            <li>PostgreSQL</li>
                             <li>MySQL</li>
                             <li>MongoDB</li>
                         </ul>
@@ -308,8 +315,8 @@
                         </li>
                         <li>
                             <h3 data-i18n="edu.drone">Levantamento Topográfico com Drones</h3>
-                            <p class="timeline__org" data-i18n="edu.droneOrg">Certificação</p>
-                            <p class="timeline__when" data-i18n="edu.droneWhen">[TODO — instituição e ano]</p>
+                            <p class="timeline__org" data-i18n="edu.droneOrg">CREA</p>
+                            <p class="timeline__when">2025</p>
                         </li>
                         <li>
                             <h3 data-i18n="edu.mysql">Banco de Dados MySQL</h3>
@@ -338,12 +345,11 @@
                     </ul>
                 </section>
 
-                <section class="block">
+                <section class="block block--compacto">
                     <h2 data-i18n="practice.title">Prática Contínua</h2>
-                    <ul class="tags tags--plain">
-                        <li>TryHackMe</li>
-                        <li>Hack The Box</li>
-                        <li>LeetCode</li>
+                    <ul class="tags tags--link">
+                        <li><a href="https://tryhackme.com/p/luisfranciscobda" rel="noopener">TryHackMe</a></li>
+                        <li><a href="https://leetcode.com/u/LouisFB/" rel="noopener">LeetCode</a></li>
                     </ul>
                 </section>
             </aside>
@@ -352,7 +358,17 @@
         <footer class="foot">
             <p class="noscript-note">Este currículo está disponível em inglês e 中文; a troca de idioma requer
                 JavaScript. Use Ctrl+P para gerar o PDF.</p>
-            <p><span data-i18n="foot.updated">Atualizado em</span>
+
+            <!-- Na tela: o repositório, porque a própria página é um projeto
+                 verificável. No papel: a URL viva, porque um PDF impresso não
+                 tem link clicável e o leitor precisa de um caminho de volta. -->
+            <p class="foot__origem">
+                <a class="link foot__fonte" href="https://github.com/LuisBiss/WebCurriculum" rel="noopener"
+                    data-i18n="foot.source">Código-fonte desta página</a>
+                <span class="foot__url">curriculo-luis-francisco.web.app</span>
+            </p>
+
+            <p class="foot__data"><span data-i18n="foot.updated">Atualizado em</span>
                 <time datetime="2026-07"><span data-i18n="foot.date">julho de 2026</span></time>
             </p>
         </footer>

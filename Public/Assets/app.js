@@ -8,10 +8,6 @@
    existe cópia duplicada do texto em português aqui — uma só
    fonte de verdade por idioma. Consequência importante: sem
    JavaScript a página continua completa em português.
-
-   ATENÇÃO: os textos marcados "TODO" abaixo (e seus equivalentes
-   no HTML) aguardam o cargo e as atribuições na Fass Advogados e
-   o ano da certificação de drones.
    ========================================================= */
 (function () {
     "use strict";
@@ -49,11 +45,11 @@
 
             "exp.title": "Professional Experience",
 
-            "exp.fassRole": "[TODO — job title at Fass Advogados]",
+            "exp.fassRole": "Software Development and API Integration",
             "exp.fassPeriod": "Jun 2025 — present",
-            "exp.fassB1": "[TODO — main responsibility]",
-            "exp.fassB2": "[TODO — second responsibility]",
-            "exp.fassB3": "[TODO — key result or delivery]",
+            "exp.fassB1": "Development and maintenance of software services integrating multiple APIs, using spec-driven development supported by AI tooling.",
+            "exp.fassB2": "Improved network speed and security through load balancing, log monitoring and IPsec.",
+            "exp.fassB3": "Substantial efficiency gains and cost reduction across management, data analysis and network performance.",
 
             "exp.tceesRole": "Information Technology Intern",
             "exp.tceesPeriod": "2024 — Feb 2025",
@@ -73,7 +69,7 @@
             "proj.ctmc": "Didactic neutron chain-reaction simulator based on CTMC/Gillespie: a C computation engine exposed through a FastAPI service, with a Flask presentation site.",
             "proj.shell": "Collection of Shell automation scripts for Linux administration and routine tasks.",
             "proj.uart": "UART serial communication between two Arduino boards, built for the Microprocessors and Microcontrollers course.",
-            "proj.recomendai": "Multilayer Perceptron neural network that produces nutritional recommendations from blood-test data.",
+            "proj.coffee": "Coffee leaf disease classification with neural networks, covering image preprocessing, selectable architectures and confusion-matrix evaluation.",
 
             "skills.title": "Skills",
             "skills.net": "Networking and Infrastructure",
@@ -91,8 +87,7 @@
             "edu.bsc": "B.Sc. in Computer Engineering",
             "edu.bscWhen": "2021 — Dec 2026 (expected)",
             "edu.drone": "Drone Topographic Surveying",
-            "edu.droneOrg": "Certification",
-            "edu.droneWhen": "[TODO — issuer and year]",
+            "edu.droneOrg": "CREA",
             "edu.mysql": "MySQL Databases",
             "edu.hs": "High School Diploma",
 
@@ -104,6 +99,7 @@
 
             "practice.title": "Ongoing Practice",
 
+            "foot.source": "Source code of this page",
             "foot.updated": "Last updated",
             "foot.date": "July 2026"
         },
@@ -121,11 +117,11 @@
 
             "exp.title": "工作经历",
 
-            "exp.fassRole": "[待补充 — Fass Advogados 的职位名称]",
+            "exp.fassRole": "软件开发与 API 集成",
             "exp.fassPeriod": "2025年6月 — 至今",
-            "exp.fassB1": "[待补充 — 主要职责]",
-            "exp.fassB2": "[待补充 — 次要职责]",
-            "exp.fassB3": "[待补充 — 重点成果]",
+            "exp.fassB1": "开发与维护集成多个 API 的软件服务，采用规格驱动开发（spec-driven development）并借助 AI 工具链。",
+            "exp.fassB2": "通过负载均衡、日志监控与 IPsec 提升网络速度与安全性。",
+            "exp.fassB3": "在管理、数据分析与网络性能方面大幅提升效率并降低成本。",
 
             "exp.tceesRole": "信息技术实习生",
             "exp.tceesPeriod": "2024 — 2025年2月",
@@ -145,7 +141,7 @@
             "proj.ctmc": "基于 CTMC/Gillespie 算法的中子链式反应教学模拟器：C 语言计算引擎通过 FastAPI 接口对外提供服务，并配有 Flask 展示站点。",
             "proj.shell": "用于 Linux 系统管理与日常任务的 Shell 自动化脚本集合。",
             "proj.uart": "两块 Arduino 开发板之间的 UART 串行通信，为《微处理器与微控制器》课程开发。",
-            "proj.recomendai": "基于多层感知机（MLP）神经网络，依据血液检验数据生成营养建议。",
+            "proj.coffee": "使用神经网络对咖啡叶片病害进行分类，涵盖图像预处理、可选网络架构与混淆矩阵评估。",
 
             "skills.title": "专业技能",
             "skills.net": "网络与基础设施",
@@ -163,8 +159,7 @@
             "edu.bsc": "计算机工程学士",
             "edu.bscWhen": "2021 — 2026年12月（预计）",
             "edu.drone": "无人机地形测绘",
-            "edu.droneOrg": "认证",
-            "edu.droneWhen": "[待补充 — 发证机构与年份]",
+            "edu.droneOrg": "CREA（巴西工程与农学委员会）",
             "edu.mysql": "MySQL 数据库",
             "edu.hs": "高中毕业",
 
@@ -176,6 +171,7 @@
 
             "practice.title": "持续实践",
 
+            "foot.source": "本页面的源代码",
             "foot.updated": "更新于",
             "foot.date": "2026年7月"
         }
