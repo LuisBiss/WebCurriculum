@@ -106,9 +106,6 @@
 
             "practice.title": "Ongoing Practice",
 
-            "cta.title": "Let's talk",
-            "cta.text": "If this profile fits a role of yours, reach out — I reply by email the same day.",
-            "cta.email": "luisfranciscobda@gmail.com",
             "foot.source": "Source code of this page",
             "foot.updated": "Last updated",
             "foot.date": "July 2026"
@@ -188,9 +185,6 @@
 
             "practice.title": "持续实践",
 
-            "cta.title": "欢迎联系",
-            "cta.text": "如果这份履历符合贵司的职位需求，欢迎与我联系——邮件当天回复。",
-            "cta.email": "luisfranciscobda@gmail.com",
             "foot.source": "本页面的源代码",
             "foot.updated": "更新于",
             "foot.date": "2026年7月"
