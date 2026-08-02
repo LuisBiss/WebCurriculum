@@ -30,7 +30,7 @@
          evita a cadeia serial CSS -> woff2 no primeiro texto pintado. -->
     <link rel="preload" href="Assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="Assets/fonts/jetbrains-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="Assets/style.css?v=3">
 
     <!-- Sem JS a barra de controles é inerte: os três botões não fariam nada.
          O conteúdo em português já vem renderizado no HTML, e Ctrl+P continua
@@ -369,6 +369,11 @@
         </div>
 
         <footer class="foot">
+            <!-- QR só na impressão: um PDF em papel não tem link clicável, então
+                 o código dá o caminho de volta à versão viva. Absoluto e ancorado
+                 ao rodapé, no vão à direita — não entra no fluxo nem muda páginas. -->
+            <img class="qr-print" src="Assets/img/qr-cv.svg" width="150" height="150" alt=""
+                aria-hidden="true">
             <p class="noscript-note">Este currículo está disponível em inglês e 中文; a troca de idioma requer
                 JavaScript. Use Ctrl+P para gerar o PDF.</p>
 
@@ -389,7 +394,7 @@
 
     <!-- defer: o português já está no HTML, então nada do primeiro paint
          depende deste script — ele só troca idioma, tema e dispara a impressão. -->
-    <script src="Assets/app.js" defer></script>
+    <script src="Assets/app.js?v=3" defer></script>
 </body>
 
 </html>

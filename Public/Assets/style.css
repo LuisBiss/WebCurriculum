@@ -208,6 +208,11 @@ a {
     display: none;
 }
 
+/* O QR é exclusivo do PDF; na tela a barra já tem o botão e o link vivo. */
+.qr-print {
+    display: none;
+}
+
 .noscript-note {
     display: none;
     margin-bottom: .3rem;
@@ -809,6 +814,7 @@ svg.icon--fill {
 
 /* ---------- Rodapé ---------- */
 .foot {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -952,9 +958,8 @@ svg.icon--fill {
     body {
         background: #fff !important;
         font-size: 9.1pt;
-        /* 1.38 x 9.1pt = 12,6pt de entrelinha: confortável no papel e o
-           que faz o português — o mais verboso dos três — fechar em uma
-           página junto com o rodapé. */
+        /* 1.38 x 9.1pt: entrelinha confortável que fecha o PT (o mais verboso)
+           em uma página. O QR é absoluto, então não pressiona a paginação. */
         line-height: 1.38;
     }
 
@@ -973,6 +978,22 @@ svg.icon--fill {
         border-radius: 0;
         box-shadow: none;
         overflow: visible;
+        position: relative;
+    }
+
+    /* QR flutua no vão do canto inferior direito, acima do rodapé.
+       Absoluto: fora do fluxo, mantém 1 página. */
+    /* QR flutua no vão do canto inferior direito, acima do rodapé. Aos 30mm o
+       lado esquerdo do código fica em ~84% da largura; a linha mais longa da
+       faixa (Prática, ~63%) para bem antes dele — sem precisar de calha. */
+    .qr-print {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 100%;
+        margin-bottom: 2mm;
+        width: 30mm;
+        height: 30mm;
     }
 
     /* A4 mede ~794px, o que dispararia o breakpoint de 900px.
